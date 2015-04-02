@@ -7,7 +7,9 @@
     class Algorithm{
         public static function index(){
             echo '<h3>冒泡排序</h3>';
-            echo self::to_string(self::bubble_sort(self::set_data(21)));
+            $arr = self::set_data(21);
+            echo '初始化数组:' . self::to_string($arr) . '</br>';
+            echo '排序后数组:' . self::to_string(self::bubble_sort($arr));
         }
 
         /**
