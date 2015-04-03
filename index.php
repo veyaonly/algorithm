@@ -149,6 +149,7 @@
 			
 			$arr[$s] = $temp;
 		}
+	/*快速排序*/
 	public static function quick_sort(&$arr=array(),$low,$high){
 		 if($low < $high){
 		    $i = $low; $j = $high;
