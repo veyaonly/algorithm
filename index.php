@@ -121,9 +121,10 @@
 		     
 		   }
 		   for($i = $length - 1;$i > 0; $i--){
-		          $temp = $arr[$i];
+		          /*$temp = $arr[$i];
 			  $arr[$i] = $arr[0];
-			  $arr[0] = $temp;
+			  $arr[0] = $temp;*/
+			  $arr = self::swap($arr, $i, 0);
 			  heap_adjust($arr,0,$i-1);
 		   }
 		}
