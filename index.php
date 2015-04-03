@@ -10,6 +10,11 @@
             $arr = self::set_data(21);
             echo '初始化数组:' . self::to_string($arr) . '</br>';
             echo '排序后数组:' . self::to_string(self::bubble_sort($arr));
+
+            echo '<h3>选择排序</h3>';
+            $arr = self::set_data(21);
+            echo '初始化数组:' . self::to_string($arr) . '</br>';
+            echo '排序后数组:' . self::to_string(self::selection_sort($arr));
         }
 
         /**
@@ -41,9 +46,21 @@
 
         /*冒泡排序*/
         public static function bubble_sort($arr = array()){
-            for ($i=0; $i < count($arr) - 1; $i++) {
-                for ($j=$i + 1; $j < count($arr); $j++) {
-                    if ($arr[$i] < $arr[$j]) {
+            for ($i=count($arr)-1; $i > 0; $i--) {
+                for ($j=0; $j < $i; $j++) {
+                    if ($arr[$j+1] < $arr[$j]) {
+                        $arr = self::swap($arr, $j+1, $j);
+                    }
+                }
+            }
+            return $arr;
+        }
+
+        /*选择排序*/
+        public static function selection_sort($arr = array()){
+            for ($i=0; $i < count($arr)-1; $i++) { 
+                for ($j=$i+1; $j < count($arr); $j++) { 
+                    if ($arr[$i] > $arr[$j]) {
                         $arr = self::swap($arr, $i, $j);
                     }
                 }
