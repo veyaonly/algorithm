@@ -21,6 +21,10 @@
             echo '初始化数组:' . self::to_string($arr) . '</br>';
             echo '排序后数组:' . self::to_string(self::insert_sort($arr));
             
+            echo '<h3>希尔排序</h3>';
+            $arr = self::set_data(21);
+            echo '初始化数组:' . self::to_string($arr) . '</br>';
+            echo '排序后数组:' . self::to_string(self::shell_sort($arr));
         }
 
         /**
@@ -85,6 +89,22 @@
                 }
             }
 	    return $arr;
+        }
+        public static function shell_sort(&$arr=array()){
+                $increment = count($arr);
+	        while ($increment > 1){
+	             $increment = floor($increment / 2);
+                     for($i=$increment; $i <= count($arr)-1; $i++){
+                        if($arr[$i] < $arr[$i - $increment]){
+                            $temp = $arr[$i];
+                            for($j = $i - $increment;$j >= 0 && $arr[$j] > $temp;$j -= $increment){
+                                $arr[$j + $increment] = $arr[$j];
+                            }
+                        $arr[$j + $increment] = $temp;
+                        }
+		      }	      
+                } 
+	        return $arr;
         }
     }
  ?>
