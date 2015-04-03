@@ -15,6 +15,12 @@
             $arr = self::set_data(21);
             echo '初始化数组:' . self::to_string($arr) . '</br>';
             echo '排序后数组:' . self::to_string(self::selection_sort($arr));
+            
+            echo '<h3>插入排序</h3>';
+            $arr = self::set_data(21);
+            echo '初始化数组:' . self::to_string($arr) . '</br>';
+            echo '排序后数组:' . self::to_string(self::insert_sort($arr));
+            
         }
 
         /**
@@ -68,14 +74,14 @@
             return $arr;
         }
         /*插入排序*/
-        public static function insert_sort($arr=array()){
-            for($i=1;$i<=count($arr)-1;$i++){
-                if($arr[$i]<$arr[$i-1]){
-                    $temp=$arr[$i];
-                    for($j=$i-1;$j>=0&&$arr[$j]>$temp;$j--){
-                        $arr[$j+1]=$arr[$j];
+        public static function insert_sort($arr = array()){
+            for($i=1; $i <= count($arr)-1; $i++){
+                if($arr[$i] < $arr[$i-1]){
+                    $temp = $arr[$i];
+                    for($j=$i-1; $j >= 0 && $arr[$j] > $temp; $j--){
+                        $arr[$j+1] = $arr[$j];
                     }
-                    $arr[$j+1]=$temp;
+                    $arr[$j+1] = $temp;
                 }
             }
 	    return $arr;
