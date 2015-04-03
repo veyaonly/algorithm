@@ -30,6 +30,11 @@
             $arr = self::set_data(21);
             echo '初始化数组:' . self::to_string($arr) . '</br>';
             echo '排序后数组:' . self::to_string(self::heap_sort($arr));
+            
+            echo '<h3>快速排序</h3>';
+            $arr = self::set_data(21);
+            echo '初始化数组:' . self::to_string($arr) . '</br>';
+            echo '排序后数组:' . self::to_string(self::quick_sort($arr,0,20));
         }
 
         /**
@@ -143,6 +148,26 @@
 			}
 			
 			$arr[$s] = $temp;
+		}
+	public static function quick_sort(&$arr=array(),$low,$high){
+		 if($low < $high){
+		    $i = $low; $j = $high;
+	            $temp = $arr[$low];
+	            while( $i < $j ){
+			 
+                        while($i < $j && $arr[$j] >= $temp)
+		              $j--;
+			$arr[$i] = $arr[$j];
+				  //$i++;
+		        while($i < $j && $arr[$i] <= $temp)
+			      $i++;
+			$arr[$j] = $arr[$i];  
+				  //$j--;
+		     }
+		     $arr[$i] = $temp;
+		     quick_sort($arr,$low,$i-1);
+		     quick_sort($arr,$i+1,$high);
+		   }
 		}
     }
  ?>
