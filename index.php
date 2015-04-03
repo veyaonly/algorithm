@@ -25,6 +25,11 @@
             $arr = self::set_data(21);
             echo '初始化数组:' . self::to_string($arr) . '</br>';
             echo '排序后数组:' . self::to_string(self::shell_sort($arr));
+            
+            echo '<h3>堆排序</h3>';
+            $arr = self::set_data(21);
+            echo '初始化数组:' . self::to_string($arr) . '</br>';
+            echo '排序后数组:' . self::to_string(self::heap_sort($arr));
         }
 
         /**
@@ -90,7 +95,8 @@
             }
 	    return $arr;
         }
-        public static function shell_sort(&$arr=array()){
+        /*希尔排序*/
+        public static function shell_sort($arr = array()){
                 $increment = count($arr);
 	        while ($increment > 1){
 	             $increment = floor($increment / 2);
@@ -106,5 +112,36 @@
                 } 
 	        return $arr;
         }
+        /*堆排序*/
+        public static function heap_sort($arr = array()){
+		   $length = count($arr);
+		   for($i = floor($length / 2)-1; $i >= 0; $i--){
+		   
+		      heap_adjust($arr,$i,$length-1);
+		     
+		   }
+		   for($i = $length - 1;$i > 0; $i--){
+		          $temp = $arr[$i];
+			  $arr[$i] = $arr[0];
+			  $arr[0] = $temp;
+			  heap_adjust($arr,0,$i-1);
+		   }
+		}
+	public static function heap_adjust($arr,$s,$m){
+		        $temp = $arr[$s];
+			
+			for($j = 2*($s+1)-1;$j <= $m;$j = 2*($j+1) - 1){
+			
+			   if($j < $m && $arr[$j] < $arr[$j+1])
+			      ++$j;
+			   if($temp >= $arr[$j])
+			      break;
+			   $arr[$s] = $arr[$j];
+			   $s = $j;
+			
+			}
+			
+			$arr[$s] = $temp;
+		}
     }
  ?>
