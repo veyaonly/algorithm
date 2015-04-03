@@ -67,5 +67,18 @@
             }
             return $arr;
         }
+        /*插入排序*/
+        public static function insert_sort($arr=array()){
+            for($i=1;$i<=count($arr)-1;$i++){
+                if($arr[$i]<$arr[$i-1]){
+                    $temp=$arr[$i];
+                    for($j=$i-1;$j>=0&&$arr[$j]>$temp;$j--){
+                        $arr[$j+1]=$arr[$j];
+                    }
+                    $arr[$j+1]=$temp;
+                }
+            }
+	    return $arr;
+        }
     }
  ?>
