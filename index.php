@@ -18,6 +18,20 @@
             echo '<h3>插入排序</h3>';
             echo '排序后数组:' . self::to_string(self::insert_sort($arr));
             
+            echo '<h3>希尔排序</h3>';
+            $arr = self::set_data(21);
+            echo '初始化数组:' . self::to_string($arr) . '</br>';
+            echo '排序后数组:' . self::to_string(self::shell_sort($arr));
+            
+            echo '<h3>堆排序</h3>';
+            $arr = self::set_data(21);
+            echo '初始化数组:' . self::to_string($arr) . '</br>';
+            echo '排序后数组:' . self::to_string(self::heap_sort($arr));
+            
+            echo '<h3>快速排序</h3>';
+            $arr = self::set_data(21);
+            echo '初始化数组:' . self::to_string($arr) . '</br>';
+            echo '排序后数组:' . self::to_string(self::quick_sort($arr,0,20));
         }
 
         /**
@@ -84,5 +98,75 @@
             }
 	    return $arr;
         }
+        /*希尔排序*/
+        public static function shell_sort($arr = array()){
+                $increment = count($arr);
+	        while ($increment > 1){
+	             $increment = floor($increment / 2);
+                     for($i=$increment; $i <= count($arr)-1; $i++){
+                        if($arr[$i] < $arr[$i - $increment]){
+                            $temp = $arr[$i];
+                            for($j = $i - $increment;$j >= 0 && $arr[$j] > $temp;$j -= $increment){
+                                $arr[$j + $increment] = $arr[$j];
+                            }
+                        $arr[$j + $increment] = $temp;
+                        }
+		      }	      
+                } 
+	        return $arr;
+        }
+        /*堆排序*/
+        public static function heap_sort($arr = array()){
+		   $length = count($arr);
+		   for($i = floor($length / 2)-1; $i >= 0; $i--){
+		   
+		      heap_adjust($arr,$i,$length-1);
+		     
+		   }
+		   for($i = $length - 1;$i > 0; $i--){
+		          /*$temp = $arr[$i];
+			  $arr[$i] = $arr[0];
+			  $arr[0] = $temp;*/
+			  $arr = self::swap($arr, $i, 0);
+			  heap_adjust($arr,0,$i-1);
+		   }
+		}
+	public static function heap_adjust($arr,$s,$m){
+		        $temp = $arr[$s];
+			
+			for($j = 2*($s+1)-1;$j <= $m;$j = 2*($j+1) - 1){
+			
+			   if($j < $m && $arr[$j] < $arr[$j+1])
+			      ++$j;
+			   if($temp >= $arr[$j])
+			      break;
+			   $arr[$s] = $arr[$j];
+			   $s = $j;
+			
+			}
+			
+			$arr[$s] = $temp;
+		}
+	/*快速排序*/
+	public static function quick_sort(&$arr=array(),$low,$high){
+		 if($low < $high){
+		    $i = $low; $j = $high;
+	            $temp = $arr[$low];
+	            while( $i < $j ){
+			 
+                        while($i < $j && $arr[$j] >= $temp)
+		              $j--;
+			$arr[$i] = $arr[$j];
+				  //$i++;
+		        while($i < $j && $arr[$i] <= $temp)
+			      $i++;
+			$arr[$j] = $arr[$i];  
+				  //$j--;
+		     }
+		     $arr[$i] = $temp;
+		     quick_sort($arr,$low,$i-1);
+		     quick_sort($arr,$i+1,$high);
+		   }
+		}
     }
  ?>
