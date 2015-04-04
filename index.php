@@ -130,7 +130,7 @@
 			  $arr[$i] = $arr[0];
 			  $arr[0] = $temp;*/
 			  $arr = self::swap($arr, $i, 0);
-			  heap_adjust($arr,0,$i-1);
+			  self::heap_adjust($arr,0,$i-1);
 		   }
 		}
 	public static function heap_adjust($arr,$s,$m){
@@ -166,8 +166,8 @@
 				  //$j--;
 		     }
 		     $arr[$i] = $temp;
-		     quick_sort($arr,$low,$i-1);
-		     quick_sort($arr,$i+1,$high);
+		     self::quick_sort($arr,$low,$i-1);
+		     self::quick_sort($arr,$i+1,$high);
 		   }
 		}
     }
