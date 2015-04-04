@@ -122,7 +122,7 @@
 		   $length = count($arr);
 		   for($i = floor($length / 2)-1; $i >= 0; $i--){
 		   
-		      heap_adjust($arr,$i,$length-1);
+		      self::heap_adjust($arr,$i,$length-1);
 		     
 		   }
 		   for($i = $length - 1;$i > 0; $i--){
@@ -132,8 +132,9 @@
 			  $arr = self::swap($arr, $i, 0);
 			  self::heap_adjust($arr,0,$i-1);
 		   }
+		   return $arr;
 		}
-	public static function heap_adjust($arr,$s,$m){
+	public static function heap_adjust(&$arr,$s,$m){
 		        $temp = $arr[$s];
 			
 			for($j = 2*($s+1)-1;$j <= $m;$j = 2*($j+1) - 1){
@@ -169,6 +170,7 @@
 		     self::quick_sort($arr,$low,$i-1);
 		     self::quick_sort($arr,$i+1,$high);
 		   }
+		   return $arr;
 		}
     }
  ?>
