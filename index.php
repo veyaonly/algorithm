@@ -3,6 +3,7 @@
 *   封装一个类
 */
     Algorithm::index();
+    
     class Algorithm{
         public static function index(){
             $arr = self::set_data(21);
