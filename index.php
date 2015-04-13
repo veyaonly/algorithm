@@ -1,7 +1,7 @@
 <?php 
 /*
 *   封装一个类
-*/
+*/ 
     Algorithm::index();
     
     class Algorithm{
